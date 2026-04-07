@@ -1,0 +1,35 @@
+<form id="menuForm" enctype="multipart/form-data">
+  <input name="title" placeholder="Nombre plato" required>
+  
+  <select name="category">
+    <option value="entradas">Entradas</option>
+    <option value="fuertes">Fuertes</option>
+    <option value="postres">Postres</option>
+    <option value="bebidas">Bebidas</option>
+  </select>
+
+  <input name="price" type="number" placeholder="Precio">
+
+  <textarea name="description"></textarea>
+
+  <input type="file" name="image" accept="image/*" required>
+  <input type="file" name="video" accept="video/*">
+
+  <button type="submit">Guardar</button>
+</form>
+
+<script>
+document.getElementById("menuForm")
+.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  await fetch("http://localhost:3000/api/menu", {
+    method: "POST",
+    body: formData
+  });
+
+  alert("Plato guardado");
+});
+</script>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Digital Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-stone-100 text-stone-800">
+
+<!-- HERO -->
+<section class="relative h-[60vh] overflow-hidden">
+
+  <!-- Imagen de fondo -->
+  <img
+    src="img/restaurant.jpg"
+    class="absolute inset-0 w-full h-full object-cover"
+    alt="restaurant"
+  />
+
+  <!-- Capa oscura -->
+  <div class="absolute inset-0 bg-black/45"></div>
+
+  <!-- CONTENIDO -->
+  <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
+
+    <!-- LOGO DEL RESTAURANTE -->
+    <div class="w-40 h-40 md:w-60 md:h-60 rounded-full bg-black/90 backdrop-blur-md shadow-2xl p-3 mb-6 border border-white/40">
+      <img
+        src="img/logo.png"
+        alt="Logo restaurante"
+        class="w-full h-full object-contain rounded-full"
+      />
+    </div>
+
+    <!-- TEXTO -->
+    <div class="backdrop-blur-md bg-white/10 rounded-[2rem] px-8 py-8 border border-white/20 shadow-2xl">
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight">
+        Nuestro Menú
+      </h1>
+
+      <p class="mt-3 text-xl md:text-2xl text-white/90">
+        Platos ahumados y frescos, bebidas y postres listos para ordenar
+      </p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- NOVEDADES -->
+<section class="max-w-7xl mx-auto px-4 py-6">
+  <div class="flex items-center gap-3 mb-4">
+  <h2 class="text-2xl md:text-3xl font-black text-stone-800">
+    ✨ Novedades
+  </h2>
+
+  <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-black shadow-sm">
+    NUEVO
+  </span>
+</div>
+
+<p class="text-sm text-stone-500 mt-1">
+  Promociones, noticias y platos destacados
+</p>
+
+  <div
+    id="storiesContainer"
+    class="flex gap-4 overflow-x-auto no-scrollbar pb-2"
+  ></div>
+</section>
+
+  <!-- CATEGORÍAS -->
+  <section class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-stone-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex gap-3 overflow-x-auto no-scrollbar">
+        <button onclick="filterCategory('todos')" class="category-btn">Todos</button>
+        <button onclick="filterCategory('entradas')" class="category-btn">Entradas</button>
+        <button onclick="filterCategory('fuertes')" class="category-btn">Fuertes</button>
+        <button onclick="filterCategory('postres')" class="category-btn">Postres</button>
+        <button onclick="filterCategory('bebidas')" class="category-btn">Bebidas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <div id="menuContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </main>
+
+  <!-- PANEL PEDIDO -->
+  <section class="max-w-4xl mx-auto px-4 pb-28">
+    <div class="bg-white rounded-[2rem] shadow-2xl border border-stone-200 p-8">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-black">🛒 Tu Pedido</h2>
+        <div class="text-right">
+          <p class="text-sm text-stone-500">Total</p>
+          <p id="totalPrice" class="text-3xl font-black text-pink-500">
+            COP $0
+          </p>
+        </div>
+      </div>
+
+      <div id="summaryList" class="space-y-3"></div>
+
+      <div class="mt-8">
+        <label class="block text-sm font-semibold mb-2">
+          Tipo de pedido
+        </label>
+
+        <select id="deliveryType" onchange="toggleForm()"
+          class="w-full rounded-2xl border border-stone-300 px-5 py-4 text-lg shadow-sm focus:ring-2 focus:ring-pink-400 outline-none">
+          <option value="">Selecciona</option>
+          <option value="local">🍽️ Consumir en el local</option>
+          <option value="domicilio">🛵 Domicilio</option>
+        </select>
+      </div>
+
+      <!-- FORM LOCAL -->
+      <div id="localForm" class="hidden mt-6 space-y-4">
+        <input id="customerName"
+          class="w-full rounded-2xl border px-5 py-4"
+          placeholder="Nombre"/>
+
+        <input id="tableNumber"
+          class="w-full rounded-2xl border px-5 py-4"
+          placeholder="Número de mesa"/>
+      </div>
+
+      <!-- FORM DOM -->
+      <div id="homeForm" class="hidden mt-6 space-y-4">
+        <input id="customerNameHome"
+          class="w-full rounded-2xl border px-5 py-4"
+          placeholder="Nombre"/>
+
+        <input id="phoneNumber"
+          class="w-full rounded-2xl border px-5 py-4"
+          placeholder="Teléfono"/>
+
+        <input id="address"
+          class="w-full rounded-2xl border px-5 py-4"
+          placeholder="Dirección"/>
+      </div>
+
+      <button onclick="goToWhatsApp()"
+        class="w-full mt-8 bg-green-500 hover:bg-green-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl transition-all hover:scale-[1.01]">
+        Enviar pedido por WhatsApp
+      </button>
+    </div>
+  </section>
+
+</body>
+<script src="script.js"></script>
+</html>
